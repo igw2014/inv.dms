@@ -164,6 +164,7 @@ variable "migration_type" {
   description = "The migration type. Can be one of `full-load`, `cdc`, `full-load-and-cdc`"
   default     = "full-load-and-cdc"
 }
+
 variable "replication_instance_arn" {
   type        = string
   description = "The Amazon Resource Name (ARN) of the replication instance"
@@ -235,6 +236,10 @@ variable "replication_task_id" {
   default = "test"
 }
 variable "replication_task_id_2" {
+  type = string
+  default = "test"
+}
+variable "bucket_folder" {
   type = string
   default = "test"
 }
