@@ -1,5 +1,6 @@
 module "dms" {
-	source = "./module/dms"
+	# source = "./module/dms"
+    source = "s3::https://s3.amazonaws.com/dms-modules/dms.zip"
     replication_subnet_group_id = var.replication_subnet_group_id
     aws_vpc_id                  = var.aws_vpc_id
     allocated_storage           = var.allocated_storage
