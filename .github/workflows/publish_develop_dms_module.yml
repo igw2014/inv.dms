@@ -1,0 +1,20 @@
+name: publish_develop_dms_module
+on:
+  push:
+    tags:
+      - 'v[12].[0-9]+.[0-9]+'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Zip DMS Folder
+      run: |
+        cd module/dms
+        echo 'METADATA_JSON<<EOF' >> $GITHUB_ENV
+        cat ./metdata.json >> $GITHUB_ENV
+        echo 'EOF' >> $GITHUB_ENV
+        zip -r dms-'${{ fromJson(env.PACKAGE_JSON).version }}''.zip .
+        ls -alrt
+    - name: Publish ZIP to S3
+      run: echo "Release"
