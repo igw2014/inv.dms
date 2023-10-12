@@ -10,11 +10,15 @@ jobs:
       run: |
         cd module/dms
         ls -alrt
-        echo 'METADATA_JSON<<EOF' >> $GITHUB_ENV
-        cat metadata.json >> $GITHUB_ENV
-        echo 'EOF' >> $GITHUB_ENV
-        echo '${{ fromJson(env.METADATA_JSON).version }}'
+    - uses: zoexx/github-action-json-file-properties@release
+      with:
+        file_path: "metadata.json"
+    - name: Get Metadata Json Properties
+      id: json_properties
+      run: |
+        pwd
+        echo ${{steps.json_properties.outputs.name}}
+        echo ${{steps.json_properties.outputs.version}}
         zip -r dms.zip . 
         ls -alrt
-    - name: Publish ZIP to S3
-      run: echo "Release"
+
