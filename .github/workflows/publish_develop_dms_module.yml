@@ -18,8 +18,8 @@ jobs:
       run: |
         pwd
         cd module/dms
-        echo '${{steps.json_properties.outputs.name}}'
-        echo '${{steps.json_properties.outputs.version}}'
+        echo '${steps.json_properties.outputs.name}'
+        echo '${steps.json_properties.outputs.version}'
         zip -r dms.zip . 
         ls -alrt
 
