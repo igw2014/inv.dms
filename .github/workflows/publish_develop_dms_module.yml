@@ -12,7 +12,7 @@ jobs:
         ls -alrt
     - uses: zoexx/github-action-json-file-properties@release
       with:
-        file_path: "metadata.json"
+        file_path: "module/dms/metadata.json"
     - name: Get Metadata Json Properties
       id: json_properties
       run: |
