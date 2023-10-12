@@ -1,8 +1,6 @@
 name: publish_develop_dms_module
 on:
-  push:
-    tags:
-      - 'v[12].[0-9]+.[0-9]+'
+    workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,7 +12,7 @@ jobs:
         echo 'METADATA_JSON<<EOF' >> $GITHUB_ENV
         cat ./metdata.json >> $GITHUB_ENV
         echo 'EOF' >> $GITHUB_ENV
-        zip -r dms-'${{ fromJson(env.PACKAGE_JSON).version }}''.zip .
+        zip -r dms.zip . 
         ls -alrt
     - name: Publish ZIP to S3
       run: echo "Release"
