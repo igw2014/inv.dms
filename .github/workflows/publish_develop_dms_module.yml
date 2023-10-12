@@ -13,6 +13,7 @@ jobs:
         echo 'METADATA_JSON<<EOF' >> $GITHUB_ENV
         cat metadata.json >> $GITHUB_ENV
         echo 'EOF' >> $GITHUB_ENV
+        echo '${{ fromJson(env.METADATA_JSON).version }}'
         zip -r dms.zip . 
         ls -alrt
     - name: Publish ZIP to S3
