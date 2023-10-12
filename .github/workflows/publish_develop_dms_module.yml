@@ -1,18 +1,34 @@
 name: publish_develop_dms_module
 on:
-    workflow_dispatch:
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Zip DMS Folder
+    - name: Checkout Module
       run: |
         cd module/dms
-        echo 'METADATA_JSON<<EOF' >> $GITHUB_ENV
-        cat ./metdata.json >> $GITHUB_ENV
-        echo 'EOF' >> $GITHUB_ENV
-        zip -r dms.zip . 
         ls -alrt
-    - name: Publish ZIP to S3
-      run: echo "Release"
+    - name: Zip Module
+      id: json_properties
+      uses: ActionsTools/read-json-action@main
+      with:
+          file_path: "module/dms/metadata.json"
+    - run: |
+        pwd
+        cd module/dms
+        echo ${{steps.json_properties.outputs.name}}
+        echo ${{steps.json_properties.outputs.version}}
+        ls -alrt
+    - name: Upload ZIP to S3
+      uses: NotCoffee418/s3-zip-upload@v1.3
+      env:
+        AWS_SECRET_ID: ${{secrets.AWS_SECRET_ID}}
+        AWS_SECRET_KEY: ${{secrets.AWS_SECRET_KEY}}
+        BUCKET_NAME: dms-modules
+        AWS_REGION: us-east-1
+        SOURCE_MODE: ZIP
+        SOURCE_PATH: module/dms
+        DEST_FILE: dms-${{steps.json_properties.outputs.version}}.zip
+
