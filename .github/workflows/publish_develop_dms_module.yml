@@ -9,8 +9,9 @@ jobs:
     - name: Zip DMS Folder
       run: |
         cd module/dms
+        ls -alrt
         echo 'METADATA_JSON<<EOF' >> $GITHUB_ENV
-        cat ./metdata.json >> $GITHUB_ENV
+        cat metdata.json >> $GITHUB_ENV
         echo 'EOF' >> $GITHUB_ENV
         zip -r dms.zip . 
         ls -alrt
