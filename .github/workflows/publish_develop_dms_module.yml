@@ -20,7 +20,6 @@ jobs:
         cd module/dms
         echo ${{steps.json_properties.outputs.name}}
         echo ${{steps.json_properties.outputs.version}}
-        zip -r dms-${{steps.json_properties.outputs.version}}.zip . 
         ls -alrt
     - name: Upload ZIP to S3
       uses: NotCoffee418/s3-zip-upload@v1.3
