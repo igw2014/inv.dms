@@ -1,7 +1,7 @@
 push:
 	git add .
 	git commit -m "$m"
-	git push -u origin $branch
+	git push -u origin $b
 
 tagandpublish:
 	git add .
