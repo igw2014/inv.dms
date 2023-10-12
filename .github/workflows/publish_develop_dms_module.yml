@@ -1,8 +1,6 @@
 name: publish_develop_dms_module
 on:
-  push:
-    tags:
-      - 'v[12].[0-9]+.[0-9]+'
+    workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
