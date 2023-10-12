@@ -10,7 +10,7 @@ jobs:
       run: |
         cd module/dms
         ls -alrt
-    - uses: zoexx/github-action-json-file-properties@release
+    - uses: ActionsTools/read-json-action@main
       with:
         file_path: "module/dms/metadata.json"
     - name: Zip Module
@@ -18,8 +18,8 @@ jobs:
       run: |
         pwd
         cd module/dms
-        echo '${steps.json_properties.outputs.name}'
-        echo '${steps.json_properties.outputs.version}'
+        echo ${{steps.json_properties.outputs.name}}
+        echo ${{steps.json_properties.outputs.version}}
         zip -r dms.zip . 
         ls -alrt
 
