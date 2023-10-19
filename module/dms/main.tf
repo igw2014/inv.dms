@@ -60,10 +60,12 @@ resource "aws_iam_role" "dms_s3_access_role" {
 }
 EOF
 }
-
+data "aws_iam_policy" "AllAccess" {
+  arn = var.dms_s3_access_policy_arn
+}
 resource "aws_iam_role_policy_attachment" "dms_s3_access_role_ploicy_attachment" {
-  role       = aws_iam_role.dms_s3_access_role.name
-  policy_arn = var.dms_s3_access_policy_arn
+  role       = "${aws_iam_role.dms_s3_access_role.name}"
+  policy_arn = "${data.aws_iam_policy.AllAccess.arn}"
 }
 
 resource "aws_s3_bucket" "target_s3_bucket" {
