@@ -243,3 +243,7 @@ variable "replication_task_id_2" {
 #   type = string
 #   default = "test"
 # }
+variable "dms_s3_access_role_name" {
+  type = string
+  default = "test"
+}

@@ -43,7 +43,7 @@ resource "aws_dms_endpoint" "dms_source_endpoint" {
 
 
 resource "aws_iam_role" "dms_s3_access_role" {
-  name = "dms_s3_access_role"
+  name = var.dms_s3_access_role_name
 
   assume_role_policy = <<EOF
 {
