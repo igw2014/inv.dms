@@ -92,6 +92,6 @@ resource "aws_dms_replication_task" "dms_repl_task" {
   replication_instance_arn  = aws_dms_replication_instance.dms_replication_instance.replication_instance_arn
   source_endpoint_arn       = aws_dms_endpoint.dms_source_endpoint.endpoint_arn
   target_endpoint_arn       = aws_dms_s3_endpoint.dms_target_endpoint.endpoint_arn
-  replication_task_settings = file("${path.module}/config/replication-task-settings.json")
-  table_mappings            = file("${path.module}/config/replication-task-table-mappings.json")
+  replication_task_settings = var.replication_task_settings
+  table_mappings            = var.table_mappings
 }
