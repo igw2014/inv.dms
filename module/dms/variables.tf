@@ -239,7 +239,7 @@ variable "replication_task_id_2" {
   type = string
   default = "test"
 }
-variable "bucket_folder" {
-  type = string
-  default = "test"
-}
+# variable "bucket_folder" {
+#   type = string
+#   default = "test"
+# }

@@ -75,7 +75,7 @@ resource "aws_dms_s3_endpoint" "dms_target_endpoint" {
   endpoint_id             = var.target_endpoint_id
   endpoint_type           = "target"
   bucket_name             = var.bucket_name
-  bucket_folder           = var.bucket_folder
+  # bucket_folder           = var.bucket_folder
   service_access_role_arn = aws_iam_role.dms_s3_access_role.arn
   add_column_name         = true
   timestamp_column_name   = "${var.target_endpoint_id}_timestamp_cdc"
